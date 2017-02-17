@@ -12,7 +12,22 @@ namespace Lab_3_Web_Application_Design.Controllers
         {
             return View();
         }
-
+        public IActionResult GetGreeting()
+        {
+            //ViewData 
+            DateTime time = DateTime.Now;
+            String greeting = "Good Morning!";
+            if(time.Hour > 12 && time.Hour < 6)
+            {
+                greeting = "Good Afternoon!";
+            }
+            else if(time.Hour > 6)
+            {
+                greeting = "Good Evening!";
+            }
+            greeting += "The time is " + time.TimeOfDay + ""
+            return View(greeting);
+        }
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
