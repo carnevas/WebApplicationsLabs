@@ -2,9 +2,10 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div>
-    @model.GetGreeting();
-    @ViewData["greeting"]
-    The time is @ViewData["timeOfDay"] on @ViewData["date"]
-    There are @ViewData["daysLeft"] in @ViewData["year"]
-</div>
+<h2>
+    
+    <p>@ViewData["greeting"]</p>
+    <p>The time is @ViewData["timeOfDay"] on @ViewData["date"]</p>
+    <p>@ViewData["daysLeft"] more days until @ViewData["year"]</p>
+
+</h2>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Lab_3_Web_Application_Design.Models;
 
 namespace Lab_3_Web_Application_Design.Controllers
 {
@@ -10,26 +11,37 @@ namespace Lab_3_Web_Application_Design.Controllers
     {
         public IActionResult Index()
         {
-            return View();
-        }
-        public IActionResult GetGreeting()
-        {
             IList<String> greetingMessage = new List<String>();
-            DateTime time = DateTime.Now;
+            DateTime time = DateTime.Today;
             String greeting = "Good Morning!";
-            if(time.Hour > 12 && time.Hour < 6)
+            if (time.Hour > 12 && time.Hour < 18)
             {
                 greeting = "Good Afternoon!";
             }
-            else if(time.Hour > 6)
+            else if (time.Hour > 18)
             {
                 greeting = "Good Evening!";
             }
             ViewData["greeting"] = greeting;
-            ViewData["timeOfDay"] = time.TimeOfDay;
-            ViewData["date"] = DateTime.Today.ToString("D");
+            ViewData["timeOfDay"] = time.ToString("h:mm tt");
+            ViewData["date"] = time.Date.ToString("D");
             ViewData["daysLeft"] = (365 - time.DayOfYear);
-            ViewData["year"] = time.Year;
+            ViewData["year"] = time.Year + 1;
+
+            return View();
+        }
+        public IActionResult ShowPerson()
+        {
+            Person p = new Person
+            {
+                FirstName = "Sophia",
+                LastName = "Carnevale",
+                BirthDate = new int[3] { 1, 26, 1996 }
+            };
+            DateTime date = new DateTime(p.BirthDate[2], p.BirthDate[0], p.BirthDate[1]);
+            ViewData["name"] = p.FirstName + " " + p.LastName;
+            ViewData["birthDate"] = date.ToString("dd MMMM yyyy");
+            ViewData["age"] = p.Age;
 
             return View();
         }
