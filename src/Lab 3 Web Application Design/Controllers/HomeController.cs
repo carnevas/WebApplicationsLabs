@@ -14,7 +14,7 @@ namespace Lab_3_Web_Application_Design.Controllers
         }
         public IActionResult GetGreeting()
         {
-            //ViewData 
+            IList<String> greetingMessage = new List<String>();
             DateTime time = DateTime.Now;
             String greeting = "Good Morning!";
             if(time.Hour > 12 && time.Hour < 6)
@@ -25,8 +25,13 @@ namespace Lab_3_Web_Application_Design.Controllers
             {
                 greeting = "Good Evening!";
             }
-            greeting += "The time is " + time.TimeOfDay + ""
-            return View(greeting);
+            ViewData["greeting"] = greeting;
+            ViewData["timeOfDay"] = time.TimeOfDay;
+            ViewData["date"] = DateTime.Today.ToString("D");
+            ViewData["daysLeft"] = (365 - time.DayOfYear);
+            ViewData["year"] = time.Year;
+
+            return View();
         }
         public IActionResult About()
         {
