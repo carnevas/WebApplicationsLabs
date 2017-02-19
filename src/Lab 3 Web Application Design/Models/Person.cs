@@ -9,7 +9,7 @@ namespace Lab_3_Web_Application_Design.Models
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        //saved as MM/DD//YYYY
+        //saved as MM DD YYYY
         public int[] BirthDate { get; set; }
         public int Age
         {
@@ -21,7 +21,7 @@ namespace Lab_3_Web_Application_Design.Models
                 {
                     age--;
                 }
-                else if (date.Day < BirthDate[1])
+                else if (date.Month == BirthDate[2] && date.Day < BirthDate[1])
                 {
                     age--;
                 }

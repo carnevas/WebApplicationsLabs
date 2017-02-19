@@ -45,6 +45,26 @@ namespace Lab_3_Web_Application_Design.Controllers
 
             return View();
         }
+        public IActionResult AddPerson()
+        {
+            return View();
+        }
+        public static Person
+        [HttpPost]
+        public IActionResult AddPerson(Person person)
+        {
+            if (ModelState.IsValid)
+            {
+                repo.Add(person);
+
+                return RedirectToAction("Index");
+
+            }
+            else
+            {
+                return View(person);
+            }
+        }
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
