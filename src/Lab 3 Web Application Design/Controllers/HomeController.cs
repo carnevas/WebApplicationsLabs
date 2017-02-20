@@ -3,22 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Lab_3_Web_Application_Design.Models;
+using WebLab3.Models;
 
-namespace Lab_3_Web_Application_Design.Controllers
+namespace WebLab3.Controllers
 {
     public class HomeController : Controller
     {
+        //holds Person objects 
+        public static PersonRepository people = new PersonRepository();
+        //Gives greeting for home page
         public IActionResult Index()
         {
             IList<String> greetingMessage = new List<String>();
-            DateTime time = DateTime.Today;
+            DateTime time = DateTime.Now;
             String greeting = "Good Morning!";
-            if (time.Hour > 12 && time.Hour < 18)
+            if (time.Hour > 11 && time.Hour < 17)
             {
                 greeting = "Good Afternoon!";
             }
-            else if (time.Hour > 18)
+            else if (time.Hour > 17)
             {
                 greeting = "Good Evening!";
             }
@@ -30,34 +33,27 @@ namespace Lab_3_Web_Application_Design.Controllers
 
             return View();
         }
+        //gives information from people object to the ShowPerson view
         public IActionResult ShowPerson()
         {
-            Person p = new Person
-            {
-                FirstName = "Sophia",
-                LastName = "Carnevale",
-                BirthDate = new int[3] { 1, 26, 1996 }
-            };
-            DateTime date = new DateTime(p.BirthDate[2], p.BirthDate[0], p.BirthDate[1]);
-            ViewData["name"] = p.FirstName + " " + p.LastName;
-            ViewData["birthDate"] = date.ToString("dd MMMM yyyy");
-            ViewData["age"] = p.Age;
+            ViewData["showPersonHeading"] = "People";
 
-            return View();
+            return View(people.PeopleList);
         }
+        //for AddPerson view
         public IActionResult AddPerson()
         {
             return View();
         }
-        public static Person
+        //takes information from form and adds it to the person list
         [HttpPost]
         public IActionResult AddPerson(Person person)
         {
             if (ModelState.IsValid)
             {
-                repo.Add(person);
+                people.AddPerson(person);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("ShowPerson");
 
             }
             else

@@ -1,9 +1,28 @@
-﻿@model Lab_3_Web_Application_Design.Models.Person
-@{ 
+﻿@model List<WebLab3.Models.Person>
+
+@{
     ViewData["Title"] = "People";
 }
-<h2>
-    <p>Name: @ViewData["name"]</p>
-    <p>Birth Date: @ViewData["birthDate"]</p>
-    <p>Age: @ViewData["age"]</p>
-</h2>
+
+<h2>@ViewData["showPersonHeading"]</h2>
+
+<table class="table">
+    <tr>
+        <td>First Name</td>
+        <td>Last Name</td>
+        <td>Birth Date</td>
+        <td>Age</td>
+    </tr>
+    @foreach (var person in Model)
+    {
+        <tr>
+            <td>@person.FirstName</td>
+            <td>@person.LastName</td>
+            <td>@person.getBirthday()</td>
+            <td>@person.Age</td>
+        </tr>
+    }
+</table>
+<a asp-action="AddPerson" asp-controller="Home" class="btn btn-info">Add Person</a>
+
+
