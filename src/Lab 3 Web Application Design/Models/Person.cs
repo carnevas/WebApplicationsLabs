@@ -8,10 +8,10 @@ namespace WebLab3.Models
 {
     public class Person
     {
-        [Required]
-        [StringLength(20, MinimumLength = 2)]
+        [Required(ErrorMessage = "Please enter a first name.")]
+        [StringLength(20, MinimumLength = 2, ErrorMessage="First Name must be 2 to 20 characters.")]
         public string FirstName { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Please enter a last name.")]
         public string LastName { get; set; }
         //saved as YYYY-MM-DD
         public string BirthDate { get; set; }

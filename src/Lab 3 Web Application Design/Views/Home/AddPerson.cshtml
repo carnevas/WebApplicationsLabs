@@ -10,12 +10,14 @@
             <label class="control-label col-md-2" asp-for="FirstName"><font color='red'>* </font>First Name:</label>
             <div class="col-md-10">
                 <input class="form-control" type="text" id="FirstName" name="FirstName" placeholder = "Jane" required />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-md-2" asp-for="LastName"><font color='red'>* </font>Last Name:</label>
             <div class="col-md-10">
                 <input class="form-control" type="text" id="LastName" name="LastName" placeholder = "Doe" required />
+                <span asp-validation-for="LastName" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
