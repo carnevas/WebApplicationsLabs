@@ -14,39 +14,53 @@ namespace WebLab3.Models
         [Required]
         public string LastName { get; set; }
         //saved as YYYY-MM-DD
-        [Required]
         public string BirthDate { get; set; }
         public int Age
         {
             get
             {
-                DateTime date = DateTime.Today; 
-                string[] birthData = BirthDate.Split('-');
-                int year = int.Parse(birthData[0]);
-                int month = int.Parse(birthData[1]);
-                int day = int.Parse(birthData[2]);
-                int age = date.Year - year;
-                if (date.Month < month)
+                int age;
+                if (BirthDate == null)
                 {
-                    age--;
+                    age = 0;
                 }
-                else if (date.Month == month && date.Day < day)
+                else
                 {
-                    age--;
+                    DateTime date = DateTime.Today;
+                    string[] birthData = BirthDate.Split('-');
+                    int year = int.Parse(birthData[0]);
+                    int month = int.Parse(birthData[1]);
+                    int day = int.Parse(birthData[2]);
+                    age = date.Year - year;
+                    if (date.Month < month)
+                    {
+                        age--;
+                    }
+                    else if (date.Month == month && date.Day < day)
+                    {
+                        age--;
+                    }
                 }
-
                 return age;
             }
         }
         //formats birthday as MonthName Day, Year
         public string getBirthday()
         {
-            string[] birthData = BirthDate.Split('-');
-            int year = int.Parse(birthData[0]);
-            int month = int.Parse(birthData[1]);
-            int day = int.Parse(birthData[2]);
-            DateTime birthDate = new DateTime(year, month, day);
-            string birthday = birthDate.ToString("MMMM") + " " + birthDate.Day + ", " + birthDate.Year;
+            string birthday;
+            if (BirthDate == null)
+            {
+                birthday = "Not Entered";
+            }
+            else
+            {
+                string[] birthData = BirthDate.Split('-');
+                int year = int.Parse(birthData[0]);
+                int month = int.Parse(birthData[1]);
+                int day = int.Parse(birthData[2]);
+                DateTime birthDate = new DateTime(year, month, day);
+                birthday = birthDate.ToString("MMMM") + " " + birthDate.Day + ", " + birthDate.Year;
+            }
             return birthday;
         }
     }

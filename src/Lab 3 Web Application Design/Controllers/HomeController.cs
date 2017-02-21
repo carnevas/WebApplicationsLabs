@@ -17,11 +17,11 @@ namespace WebLab3.Controllers
             IList<String> greetingMessage = new List<String>();
             DateTime time = DateTime.Now;
             String greeting = "Good Morning!";
-            if (time.Hour > 11 && time.Hour < 17)
+            if (time.Hour >= 11 && time.Hour < 17)
             {
                 greeting = "Good Afternoon!";
             }
-            else if (time.Hour > 17)
+            else if (time.Hour >= 17)
             {
                 greeting = "Good Evening!";
             }
@@ -36,7 +36,7 @@ namespace WebLab3.Controllers
         //gives information from people object to the ShowPerson view
         public IActionResult ShowPerson()
         {
-            ViewData["showPersonHeading"] = "People";
+            ViewData["heading"] = "People";
 
             return View(people.PeopleList);
         }
