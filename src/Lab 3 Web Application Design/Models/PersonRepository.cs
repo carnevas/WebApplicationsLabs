@@ -17,9 +17,9 @@ namespace WebLab3.Models
 
             Person p = new Person
             {
-                FirstName = "Sophia",
-                LastName = "Carnevale",
-                BirthDate = "1996-01-26"
+                FirstName = "Jane",
+                LastName = "Doe",
+                BirthDate = "1993-03-04"
             };
 
             PeopleList.Add(p);
