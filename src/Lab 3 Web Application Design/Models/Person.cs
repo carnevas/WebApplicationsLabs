@@ -45,7 +45,7 @@ namespace WebLab4.Models
             }
         }
         //formats birthday as MonthName Day, Year
-        public string getBirthday()
+        public string GetBirthday()
         {
             string birthday;
             if (BirthDate == null)

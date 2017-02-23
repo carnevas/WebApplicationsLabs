@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using WebLab3.Models;
+using WebLab4.Models;
 
 namespace WebLab4.Controllers
 {
     public class HomeController : Controller
     {
-        //holds Person objects 
-        public static PersonRepository people = new PersonRepository();
+      
         //Gives greeting for home page
         public IActionResult Index()
         {
@@ -34,48 +33,18 @@ namespace WebLab4.Controllers
 
             return View();
         }
-        //gives information from people object to the ShowPerson view
-        public IActionResult ShowPerson()
-        {
-            ViewData["heading"] = "People";
-
-            return View(people.PeopleList);
-        }
-        //for AddPerson view
-        public IActionResult AddPerson()
-        {
-            return View();
-        }
-        //takes information from form and adds it to the person list
-        [HttpPost]
-        public IActionResult AddPerson(Person person)
-        {
-            if (ModelState.IsValid)
-            {
-                people.AddPerson(person);
-
-                return RedirectToAction("ShowPerson");
-
-            }
-            else
-            {
-                return View(person);
-            }
-        }
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
 
             return View();
         }
-
         public IActionResult Contact()
         {
             ViewData["Message"] = "Your contact page.";
 
             return View();
         }
-
         public IActionResult Error()
         {
             return View();
