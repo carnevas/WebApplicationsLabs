@@ -15,7 +15,7 @@ namespace WebLab3.Controllers
         public IActionResult Index()
         {
             IList<String> greetingMessage = new List<String>();
-            DateTime time = DateTime.Now;
+            DateTime time = DateTime.UtcNow.ToLocalTime();
             String greeting = "Good Morning!";
             if (time.Hour >= 11 && time.Hour < 17)
             {
