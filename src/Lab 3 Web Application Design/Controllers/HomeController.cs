@@ -15,7 +15,8 @@ namespace WebLab3.Controllers
         public IActionResult Index()
         {
             IList<String> greetingMessage = new List<String>();
-            DateTime time = DateTime.UtcNow.ToLocalTime();
+            var myTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time");
+            var time = TimeZoneInfo.ConvertTime(DateTime.Now, myTimeZone);
             String greeting = "Good Morning!";
             if (time.Hour >= 11 && time.Hour < 17)
             {
