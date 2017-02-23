@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebLab3.Models
+namespace WebLab4.Models
 {
     public class Person
     {

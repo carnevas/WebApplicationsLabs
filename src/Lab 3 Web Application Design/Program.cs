@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 
-namespace Lab_3_Web_Application_Design
+namespace WebLab4
 {
     public class Program
     {

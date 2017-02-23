@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WebLab3.Models;
 
-namespace WebLab3.Controllers
+namespace WebLab4.Controllers
 {
     public class HomeController : Controller
     {

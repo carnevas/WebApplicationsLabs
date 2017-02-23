@@ -8,7 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace Lab_3_Web_Application_Design
+namespace WebLab4
 {
     public class Startup
     {
