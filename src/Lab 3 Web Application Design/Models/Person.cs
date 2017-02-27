@@ -44,6 +44,7 @@ namespace WebLab4.Models
                 }
                 return age;
             }
+            set {}
         }
         //formats birthday as MonthName Day, Year
         public string GetBirthday()
