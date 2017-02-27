@@ -10,18 +10,42 @@ namespace WebLab4.Controllers
     public class PeopleController : Controller
     {
         //holds Person objects 
-        public static PersonRepository people = new PersonRepository();
+        private PersonRepository people;
+
+        private readonly ApplicationDbContext _context;
+        //constructor
+        public PeopleController(ApplicationDbContext context)
+        {
+            _context = context;
+            people = new PersonRepository();
+        }
         // GET: /<controller>/
         public IActionResult Index()
         {
-            return View();
+            ViewData["heading"] = "People";
+            return View(_context.People.ToList());
         }
         //gives information from people object to the ShowPerson view
-        public IActionResult ShowPerson()
+        public IActionResult ShowPerson(int? id)
         {
-            ViewData["heading"] = "People";
+            ViewData["heading"] = "Person";
+            Person person;
+            if (id == null)
+            {
+                person = new Person
+                {
+                    FirstName = "John",
+                    LastName = "Doe",
+                    BirthDate = "1995-02-12"
+                };
+            }
+            else
+            {
+                person = _context.People.SingleOrDefault(p => p.PersonID == id);
+            }
 
-            return View(people.PeopleList);
+            return View(person);
+           // return View(people.PeopleList);
         }
         //for AddPerson view
         public IActionResult AddPerson()
