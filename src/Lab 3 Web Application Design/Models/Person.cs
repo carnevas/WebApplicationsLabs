@@ -8,6 +8,7 @@ namespace WebLab4.Models
 {
     public class Person
     {
+        public int PersonID { get; set; }
         [Required(ErrorMessage = "Please enter a first name.")]
         [StringLength(20, MinimumLength = 2, ErrorMessage="First Name must be 2 to 20 characters.")]
         public string FirstName { get; set; }
