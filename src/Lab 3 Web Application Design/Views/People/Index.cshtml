@@ -1,0 +1,29 @@
+﻿@model List<WebLab4.Models.Person>
+
+@{
+    ViewData["Title"] = "People";
+}
+
+<h2>@ViewData["IndexHeading"]</h2>
+
+<table class="table">
+    <tr>
+        <td>First Name</td>
+        <td>Last Name</td>
+        <td>Birth Date</td>
+        <td>Age</td>
+    </tr>
+    @foreach (var person in Model)
+    {
+        <tr>
+            <td><a asp-action="Details" asp-route-id="@person.PersonID">@person.FirstName  @person.LastName</a></td>
+            <td>@person.FirstName</td>
+            <td>@person.LastName</td>
+            <td>@person.GetBirthday()</td>
+            <td>@person.Age</td>
+        </tr>
+    }
+</table>
+<a asp-action="AddPerson" asp-controller="Home" class="btn btn-info">Add Person</a>
+
+

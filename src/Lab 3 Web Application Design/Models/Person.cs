@@ -18,7 +18,8 @@ namespace WebLab4.Models
         public string BirthDate { get; set; }
         public int Age
         {
-            get
+            get { return Age; }
+            set
             {
                 int age;
                 if (BirthDate == null)
@@ -42,9 +43,8 @@ namespace WebLab4.Models
                         age--;
                     }
                 }
-                return age;
+                Age = age;
             }
-            set {}
         }
         //formats birthday as MonthName Day, Year
         public string GetBirthday()

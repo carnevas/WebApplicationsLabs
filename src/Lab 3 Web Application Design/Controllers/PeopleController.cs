@@ -22,13 +22,13 @@ namespace WebLab4.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-            ViewData["heading"] = "People";
+            ViewData["IndexHeading"] = "People";
             return View(_context.People.ToList());
         }
         //gives information from people object to the ShowPerson view
         public IActionResult ShowPerson(int? id)
         {
-            ViewData["heading"] = "Person";
+            ViewData["ShowPersonHeading"] = "Person";
             Person person;
             if (id == null)
             {
@@ -46,6 +46,21 @@ namespace WebLab4.Controllers
 
             return View(person);
            // return View(people.PeopleList);
+        }
+        //for Details view
+        public IActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var person = _context.People
+                    .SingleOrDefault(p => p.PersonID == id);
+            if (person == null)
+            {
+                return NotFound();
+            }
+            return View("ShowPerson", person);
         }
         //for AddPerson view
         public IActionResult AddPerson()

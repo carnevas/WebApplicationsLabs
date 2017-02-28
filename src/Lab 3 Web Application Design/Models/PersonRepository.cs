@@ -8,9 +8,15 @@ namespace WebLab4.Models
     public class PersonRepository
     {
         //list that holds Person objects
-        public List<Person> PeopleList { get; set; }
+        public readonly ApplicationDbContext _context;
 
         //constructor
+        public PersonRepository(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+
+        public List<Person> PeopleList;
         public PersonRepository()
         {
             PeopleList = new List<Person>();
@@ -27,7 +33,8 @@ namespace WebLab4.Models
         //adds Person object to list
         public void AddPerson(Person person)
         {
-            PeopleList.Add(person);
+            _context.Add(person);
+            _context.SaveChanges();
         }
     }
 }

@@ -1,28 +1,19 @@
-﻿@model List<WebLab4.Models.Person>
-
-@{
-    ViewData["Title"] = "People";
+﻿@model WebLab4.Models.Person
+@{ 
+    ViewData["Title"] = "Person";
 }
-
-<h2>@ViewData["heading"]</h2>
-
-<table class="table">
-    <tr>
-        <td>First Name</td>
-        <td>Last Name</td>
-        <td>Birth Date</td>
-        <td>Age</td>
-    </tr>
-    @foreach (var person in Model)
-    {
-        <tr>
-            <td>@person.FirstName</td>
-            <td>@person.LastName</td>
-            <td>@person.GetBirthday()</td>
-            <td>@person.Age</td>
-        </tr>
-    }
-</table>
-<a asp-action="AddPerson" asp-controller="Home" class="btn btn-info">Add Person</a>
-
-
+@if (Model != null)
+{
+    <h2>@ViewData["ShowPersonHeading"]</h2>
+    <hr>
+    <body>
+        <p>First Name: @Model.FirstName</p>
+        <p>Last Name: @Model.LastName</p>
+        <p>Birth Date: @Model.GetBirthday()</p>
+        <p>Age: @Model.Age</p>
+    </body>
+}
+else
+{ 
+    <h1>Person not found.</h1>
+}
