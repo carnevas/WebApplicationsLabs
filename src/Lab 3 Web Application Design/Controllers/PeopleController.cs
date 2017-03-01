@@ -62,6 +62,22 @@ namespace WebLab4.Controllers
             }
             return View("ShowPerson", person);
         }
+        //for DeletePerson view
+        public IActionResult DeletePerson(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var person = _context.People
+                    .SingleOrDefault(p => p.PersonID == id);
+            if (person == null)
+            {
+                return NotFound();
+            }
+            
+            return View(person);
+        }
         //for AddPerson view
         public IActionResult AddPerson()
         {

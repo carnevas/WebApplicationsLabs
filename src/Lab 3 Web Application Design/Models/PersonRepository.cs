@@ -36,5 +36,11 @@ namespace WebLab4.Models
             _context.Add(person);
             _context.SaveChanges();
         }
+        //deletes Person object from list
+        public void DeletePerson(Person person)
+        {
+            _context.DeleteObject(person);
+            _context.SaveChanges();
+        }
     }
 }
