@@ -36,7 +36,7 @@ namespace WebLab4.Controllers
                 {
                     FirstName = "John",
                     LastName = "Doe",
-                    BirthDate = "1995-02-12"
+                    BirthDate = new DateTime(1995, 2, 12)
                 };
             }
             else
@@ -45,7 +45,6 @@ namespace WebLab4.Controllers
             }
 
             return View(person);
-           // return View(people.PeopleList);
         }
         //for Details view
         public IActionResult Details(int? id)
@@ -65,18 +64,18 @@ namespace WebLab4.Controllers
         //for DeletePerson view
         public IActionResult DeletePerson(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-            var person = _context.People
-                    .SingleOrDefault(p => p.PersonID == id);
-            if (person == null)
-            {
-                return NotFound();
-            }
-            
+            Person person = _context.People.SingleOrDefault(p => p.PersonID == id);
+            ViewData["DeletePersonHeading"] = "Are you sure you would like to delete " + person.FirstName + " " + person.LastName + "?";
             return View(person);
+        }
+        [HttpPost]
+        public IActionResult DeletePerson(Person person)
+        {
+            if(person != null)
+            {
+                people.DeletePerson(person);
+            }
+            return RedirectToAction("Index");
         }
         //for AddPerson view
         public IActionResult AddPerson()
@@ -91,7 +90,7 @@ namespace WebLab4.Controllers
             {
                 people.AddPerson(person);
 
-                return RedirectToAction("ShowPerson");
+                return RedirectToAction("Index");
 
             }
             else

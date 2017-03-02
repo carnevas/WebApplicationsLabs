@@ -1,10 +1,10 @@
 ﻿@model WebLab4.Models.Person
-@{ 
+@{
     ViewData["Title"] = "Person";
 }
 @if (Model != null)
 {
-    <h2>@ViewData["ShowPersonHeading"]</h2>
+    <h2>@Model.FirstName @Model.LastName</h2>
     <hr>
     <body>
         <p>First Name: @Model.FirstName</p>
@@ -12,8 +12,11 @@
         <p>Birth Date: @Model.GetBirthday()</p>
         <p>Age: @Model.Age</p>
     </body>
+    <div>
+        <a asp-action="DeletePerson" asp-controller="People" asp-route-person="@Model" class="btn btn-info">Delete Person</a>
+    </div>
 }
 else
-{ 
+{
     <h1>Person not found.</h1>
 }

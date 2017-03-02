@@ -25,7 +25,7 @@ namespace WebLab4.Models
             {
                 FirstName = "Jane",
                 LastName = "Doe",
-                BirthDate = "1993-03-04"
+                BirthDate = new DateTime(1993, 3, 4)
             };
 
             PeopleList.Add(p);
@@ -39,7 +39,7 @@ namespace WebLab4.Models
         //deletes Person object from list
         public void DeletePerson(Person person)
         {
-            _context.DeleteObject(person);
+            _context.Remove(person);
             _context.SaveChanges();
         }
     }

@@ -21,7 +21,7 @@ namespace WebLab4.Migrations
                     b.Property<int>("PersonID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("BirthDate");
+                    b.Property<DateTime>("BirthDate");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -29,6 +29,8 @@ namespace WebLab4.Migrations
 
                     b.Property<string>("LastName")
                         .IsRequired();
+
+                    b.Property<int>("Age");
 
                     b.HasKey("PersonID");
 

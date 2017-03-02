@@ -8,6 +8,7 @@
 
 <table class="table">
     <tr>
+        <td>Person</td>
         <td>First Name</td>
         <td>Last Name</td>
         <td>Birth Date</td>
@@ -16,7 +17,7 @@
     @foreach (var person in Model)
     {
         <tr>
-            <td><a asp-action="Details" asp-route-id="@person.PersonID">@person.FirstName  @person.LastName</a></td>
+            <td><a asp-action="Details" asp-controller="People" asp-route-id="@person.PersonID">@person.FirstName  @person.LastName</a></td>
             <td>@person.FirstName</td>
             <td>@person.LastName</td>
             <td>@person.GetBirthday()</td>
@@ -24,6 +25,6 @@
         </tr>
     }
 </table>
-<a asp-action="AddPerson" asp-controller="Home" class="btn btn-info">Add Person</a>
+<a asp-action="AddPerson" asp-controller="People" class="btn btn-info">Add Person</a>
 
 
