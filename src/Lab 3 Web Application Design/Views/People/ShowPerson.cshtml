@@ -13,7 +13,7 @@
         <p>Age: @Model.Age</p>
     </body>
     <div>
-        <a asp-action="DeletePerson" asp-controller="People" asp-route-person="@Model.PersonID" class="btn btn-info">Delete Person</a>
+        <a asp-action="DeletePerson" asp-controller="People" asp-route-id="@Model.PersonID" class="btn btn-info">Delete Person</a>
         <a asp-action="EditPerson" asp-controller="People" asp-route-id="@Model.PersonID" class="btn btn-info">Edit Person</a>
     </div>
 }
