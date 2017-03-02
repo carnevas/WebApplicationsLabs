@@ -9,8 +9,11 @@
     <body>
         <p>First Name: @Model.FirstName</p>
         <p>Last Name: @Model.LastName</p>
-        <p>Birth Date: @Model.GetBirthday()</p>
-        <p>Age: @Model.Age</p>
+        @if (Model.BirthDate != null)
+        {
+            <p>Birth Date: @Model.GetBirthday()</p>
+            <p>Age: @Model.Age</p>
+        }
     </body>
     <input type="button" asp-action="DeletePerson" asp-route-id="@Model.PersonID" method="post" value="Delete" class="btn btn-info" />
     <a asp-action="Index" asp-controller="People" class="btn btn-info">Cancel</a>

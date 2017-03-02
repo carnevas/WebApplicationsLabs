@@ -1,0 +1,71 @@
+﻿@model WebLab4.Models.Person
+@{
+    ViewData["Title"] = "Edit Person";
+}
+@if (Model != null)
+{
+    <form asp-action="EditPerson" asp-route-id="@Model.PersonID" method="post">
+        <div class="form-horizontal">
+            <h2>Edit Person</h2>
+            <hr/>
+            <div class="text-danger"></div>
+            <input name="PersonID" id="PersonID" type="hidden" value="@Model.PersonID" />
+            <div class="form-group">
+                <label class="control-label col-md-2" asp-for="FirstName"><font color='red'>* </font>First Name:</label>
+                <div class="col-md-10">
+                    <input class="form-control" type="text" id="FirstName" name="FirstName" value="@Model.FirstName" required />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2" asp-for="LastName"><font color='red'>* </font>Last Name:</label>
+                <div class="col-md-10">
+                    <input class="form-control" type="text" id="LastName" name="LastName" value="@Model.LastName" required />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+            </div>
+        @if (Model.BirthDate == null)
+        {
+            <div class="form-group">
+                <label class="control-label col-md-2" asp-for="BirthDate">Birth Date:</label>
+                <div class="col-md-10">
+                    <input class="form-control" type="date" id="BirthDate" name="BirthDate" />
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="form-group">
+                <label class="control-label col-md-2" asp-for="BirthDate">Birth Date:</label>
+                <div class="col-md-10">
+                    <input class="form-control" type="date" id="BirthDate" value="@Model.BirthDate" name="BirthDate" />
+                </div>
+            </div>
+        }
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <a asp-action="Index" asp-controller="People" class="btn btn-default">Cancel</a>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <p><font color='red'>* </font> <i>indicates a required field.</i> </p>
+                </div>
+            </div>
+        </div>
+    </form>
+    @section Scripts{
+        <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    }
+}
+else
+{
+    <h1>Person not found.</h1>
+}

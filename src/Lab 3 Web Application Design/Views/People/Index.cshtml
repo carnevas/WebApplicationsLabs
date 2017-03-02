@@ -8,20 +8,31 @@
 
 <table class="table">
     <tr>
-        <td>Person</td>
         <td>First Name</td>
         <td>Last Name</td>
         <td>Birth Date</td>
         <td>Age</td>
+        <td>Actions</td>
     </tr>
     @foreach (var person in Model)
     {
         <tr>
-            <td><a asp-action="Details" asp-controller="People" asp-route-id="@person.PersonID">@person.FirstName  @person.LastName</a></td>
             <td>@person.FirstName</td>
             <td>@person.LastName</td>
+        @if (person.BirthDate != null)
+        {
             <td>@person.GetBirthday()</td>
             <td>@person.Age</td>
+        }
+        else
+        {
+            <td>Not Inputed</td>
+            <td>Not Inputed</td>
+        }
+            <td><a asp-action="EditPerson" asp-controller="People" asp-route-id="@person.PersonID">Edit</a>|
+                <a asp-action="Details" asp-controller="People" asp-route-id="@person.PersonID">Details</a>|
+                <a asp-action="DeletePerson" asp-controller="People" asp-route-id="@person.PersonID">Delete</a>
+            </td>
         </tr>
     }
 </table>

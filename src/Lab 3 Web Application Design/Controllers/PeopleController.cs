@@ -53,8 +53,7 @@ namespace WebLab4.Controllers
             {
                 return NotFound();
             }
-            var person = _context.People
-                    .SingleOrDefault(p => p.PersonID == id);
+            var person = _context.People.SingleOrDefault(p => p.PersonID == id);
             if (person == null)
             {
                 return NotFound();
@@ -73,7 +72,8 @@ namespace WebLab4.Controllers
         {
             if(person != null)
             {
-                people.DeletePerson(person);
+                _context.Remove(person);
+                _context.SaveChanges();
             }
             return RedirectToAction("Index");
         }
@@ -88,15 +88,35 @@ namespace WebLab4.Controllers
         {
             if (ModelState.IsValid)
             {
-                people.AddPerson(person);
-
+                _context.Add(person);
+                _context.SaveChanges();
                 return RedirectToAction("Index");
-
             }
             else
             {
                 return View(person);
             }
         }
+        public IActionResult EditPerson(int? id)
+        {
+            Person person = _context.People.SingleOrDefault(p => p.PersonID == id);
+            return View(person);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult EditPerson(Person person)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.People.SingleOrDefault(p => p.PersonID == person.PersonID);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(person);
+            }
+        }
+
     }
 }
