@@ -24,10 +24,6 @@ namespace WebLab4.Models
                 if (BirthDate != null)
                 {
                     DateTime date = DateTime.Today;
-                    //string[] birthData = BirthDate.Split('-');
-                    // int year = int.Parse(birthData[0]);
-                    //int month = int.Parse(birthData[1]);
-                    //int day = int.Parse(birthData[2]);
                     age = date.Year - BirthDate.Year;
                     if (date.Month < BirthDate.Month)
                     {
@@ -51,11 +47,6 @@ namespace WebLab4.Models
             }
             else
             {
-                /**string[] birthData = BirthDate.Split('-');
-                int year = int.Parse(birthData[0]);
-                int month = int.Parse(birthData[1]);
-                int day = int.Parse(birthData[2]);
-                DateTime birthDate = new DateTime(year, month, day);*/
                 birthday = BirthDate.ToString("MMMM") + " " + BirthDate.Day + ", " + BirthDate.Year;
             }
             return birthday;
