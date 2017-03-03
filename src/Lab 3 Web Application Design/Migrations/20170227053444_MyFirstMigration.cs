@@ -16,7 +16,6 @@ namespace WebLab4.Migrations
                     PersonID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     BirthDate = table.Column<DateTime>(nullable: true),
-                    Age = table.Column<int>(nullable: true),
                     FirstName = table.Column<string>(maxLength: 20, nullable: false),
                     LastName = table.Column<string>(nullable: false)
                 },

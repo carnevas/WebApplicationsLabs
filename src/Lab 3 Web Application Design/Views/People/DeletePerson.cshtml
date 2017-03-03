@@ -15,7 +15,9 @@
             <p>Age: @Model.Age</p>
         }
     </body>
-    <a asp-action="DeletePerson" method="post" asp-route-person="@Model" class="btn btn-info">Delete</a>
+    <form asp-action="DeletePerson" method="post">
+       <input type="submit" asp-route-person="@Model" value ="Delete" class="btn btn-info" />
+    </form> 
     <a asp-action="Index" asp-controller="People" class="btn btn-info">Cancel</a>
 }
 else

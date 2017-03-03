@@ -108,7 +108,7 @@ namespace WebLab4.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.People.SingleOrDefault(p => p.PersonID == person.PersonID);
+                _context.Update(person);
                 _context.SaveChanges();
                 return RedirectToAction("Index");
             }
