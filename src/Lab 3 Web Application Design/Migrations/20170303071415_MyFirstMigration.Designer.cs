@@ -8,8 +8,8 @@ using WebLab4.Models;
 namespace WebLab4.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20170303010032_NoAge")]
-    partial class NoAge
+    [Migration("20170303071415_MyFirstMigration")]
+    partial class MyFirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -22,7 +22,7 @@ namespace WebLab4.Migrations
                     b.Property<int>("PersonID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("BirthDate");
+                    b.Property<string>("BirthDate");
 
                     b.Property<string>("FirstName")
                         .IsRequired()

@@ -8,6 +8,7 @@ namespace WebLab4.Models
 {
     public class Person
     {
+        [Required]
         public int PersonID { get; set; }
         [Required(ErrorMessage = "Please enter a first name.")]
         [StringLength(20, MinimumLength = 2, ErrorMessage="First Name must be 2 to 20 characters.")]
@@ -15,21 +16,29 @@ namespace WebLab4.Models
         [Required(ErrorMessage = "Please enter a last name.")]
         public string LastName { get; set; }
         //saved as YYYY-MM-DD
-        public DateTime BirthDate { get; set; }
+        public string BirthDate { get; set; }
         public int Age
         {
             get
             {
-                int age = -1;
-                if (BirthDate != null)
+                int age = 0;
+                if (BirthDate == null)
+                {
+                    age = 0;
+                }
+                else
                 {
                     DateTime date = DateTime.Today;
-                    age = date.Year - BirthDate.Year;
-                    if (date.Month < BirthDate.Month)
+                    string[] birthData = BirthDate.Split('-');
+                    int year = int.Parse(birthData[0]);
+                    int month = int.Parse(birthData[1]);
+                    int day = int.Parse(birthData[2]);
+                    age = date.Year - year;
+                    if (date.Month < month)
                     {
                         age--;
                     }
-                    else if (date.Month == BirthDate.Month && date.Day < BirthDate.Day)
+                    else if (date.Month == month && date.Day < day)
                     {
                         age--;
                     }
@@ -43,11 +52,16 @@ namespace WebLab4.Models
             string birthday;
             if (BirthDate == null)
             {
-                birthday = "Not Entered";
+                birthday = "";
             }
             else
             {
-                birthday = BirthDate.ToString("MMMM") + " " + BirthDate.Day + ", " + BirthDate.Year;
+                string[] birthData = BirthDate.Split('-');
+                int year = int.Parse(birthData[0]);
+                int month = int.Parse(birthData[1]);
+                int day = int.Parse(birthData[2]);
+                DateTime birthDate = new DateTime(year, month, day);
+                birthday = birthDate.ToString("MMMM") + " " + birthDate.Day + ", " + birthDate.Year;
             }
             return birthday;
         }

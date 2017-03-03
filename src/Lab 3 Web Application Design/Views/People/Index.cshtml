@@ -19,16 +19,15 @@
         <tr>
             <td>@person.FirstName</td>
             <td>@person.LastName</td>
-        @if (person.BirthDate != null)
-        {
             <td>@person.GetBirthday()</td>
-            <td>@person.Age</td>
-        }
-        else
-        {
-            <td>Not Inputed</td>
-            <td>Not Inputed</td>
-        }
+            @if (person.BirthDate == null)
+            {
+                <td></td>
+            }
+            else
+            {
+                <td>@person.Age</td>
+            }
             <td><a asp-action="EditPerson" asp-controller="People" asp-route-id="@person.PersonID">Edit</a> |
                 <a asp-action="Details" asp-controller="People" asp-route-id="@person.PersonID">Details</a> |
                 <a asp-action="DeletePerson" asp-controller="People" asp-route-id="@person.PersonID">Delete</a>

@@ -36,14 +36,13 @@ namespace WebLab4.Controllers
                 {
                     FirstName = "John",
                     LastName = "Doe",
-                    BirthDate = new DateTime(1995, 2, 12)
+                    BirthDate = "1995-2-12"
                 };
             }
             else
             {
                 person = _context.People.SingleOrDefault(p => p.PersonID == id);
             }
-
             return View(person);
         }
         //for Details view
@@ -72,7 +71,7 @@ namespace WebLab4.Controllers
         {
             if(person != null)
             {
-                _context.Remove(person);
+                _context.People.Remove(person);
                 _context.SaveChanges();
             }
             return RedirectToAction("Index");
@@ -96,6 +95,7 @@ namespace WebLab4.Controllers
             {
                 return View(person);
             }
+           
         }
         public IActionResult EditPerson(int? id)
         {

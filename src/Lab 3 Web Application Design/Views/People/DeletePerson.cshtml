@@ -16,9 +16,12 @@
         }
     </body>
     <form asp-action="DeletePerson" method="post">
-       <input type="submit" asp-route-person="@Model" value ="Delete" class="btn btn-info" />
+        <div class="form-group">
+            <input type="hidden" asp-for="PersonID" value="@Model.PersonID" />
+            <button class="btn btn-default">Delete</button>
+            <a asp-action="Index" asp-controller="People" class="btn btn-default">Cancel</a>
+        </div>
     </form> 
-    <a asp-action="Index" asp-controller="People" class="btn btn-info">Cancel</a>
 }
 else
 {
